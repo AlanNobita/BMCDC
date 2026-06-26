@@ -1,0 +1,525 @@
+/* ═══════════════════════════════════════════════════════════
+   AUTH PAGES (Login & Signup) — Elevated Design System
+   Navy · White · Warm Serif Accents
+═══════════════════════════════════════════════════════════ */
+
+/* ─── PAGE SHELL ────────────────────────────────────────── */
+.authPage {
+  min-height: 100vh;
+  display: flex;
+  background: var(--white);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LEFT PANEL — The Creative Side
+═══════════════════════════════════════════════════════════ */
+.leftPanel {
+  flex: 0 0 46%;
+  background: linear-gradient(145deg, var(--navy-deep) 0%, #0d1b3e 45%, #142248 75%, #1a2f5a 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Geometric mesh / dot-matrix overlay ─────────────── */
+.leftPanel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(0,174,239,.18) 0%, transparent 50%),
+    radial-gradient(circle at 80% 75%, rgba(0,174,239,.12) 0%, transparent 45%),
+    radial-gradient(circle at 55% 0%,  rgba(255,255,255,.04) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* SVG dot-grid pattern */
+.leftPanel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.065) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* Decorative geometric lines */
+.leftDecor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.leftDecor::before {
+  content: '';
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  border: 1px solid rgba(0,174,239,.12);
+  border-radius: 50%;
+  top: -180px;
+  right: -180px;
+}
+.leftDecor::after {
+  content: '';
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border: 1px solid rgba(0,174,239,.08);
+  border-radius: 50%;
+  bottom: -80px;
+  left: -80px;
+}
+
+.leftInner {
+  position: relative;
+  z-index: 2;
+  padding: 44px 52px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0;
+}
+
+/* ─── Back link ──────────────────────────────────────────── */
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.5);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.22s, gap 0.22s;
+  margin-bottom: auto;
+  width: fit-content;
+}
+.backLink:hover {
+  color: rgba(255,255,255,.95);
+  gap: 12px;
+}
+
+/* ─── Brand badge top-right ─────────────────────────────── */
+.leftBrand {
+  position: absolute;
+  top: 40px;
+  right: 48px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.leftBrandName {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+
+/* ─── Glassmorphic Quote card ───────────────────────────── */
+.heroQuote {
+  /* Push to bottom */
+  margin-top: auto;
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 20px;
+  padding: 36px 40px;
+  position: relative;
+}
+
+/* Thin cyan top-border accent */
+.heroQuote::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 40px; right: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,174,239,.6), transparent);
+  border-radius: 0 0 2px 2px;
+}
+
+.quoteIcon {
+  font-family: var(--font-serif);
+  font-size: 4.5rem;
+  color: var(--cyan);
+  line-height: 0.5;
+  margin-bottom: 20px;
+  opacity: 0.55;
+  display: block;
+  user-select: none;
+}
+
+.heroQuote p {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.92);
+  line-height: 1.6;
+  margin-bottom: 18px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.heroQuote span {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: rgba(0,174,239,.8);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RIGHT PANEL — The Form Side
+═══════════════════════════════════════════════════════════ */
+.rightPanel {
+  flex: 1;
+  background: #fafbfd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 40px;
+  /* Subtle texture */
+  background-image: radial-gradient(circle at 70% 20%, rgba(13,27,62,.025) 0%, transparent 50%);
+}
+
+.formWrap {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ─── Form Header ────────────────────────────────────────── */
+.formHeader {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.logoLink {
+  display: inline-block;
+  margin-bottom: 24px;
+  border-radius: 14px;
+  padding: 4px;
+  transition: transform 0.22s;
+}
+.logoLink:hover { transform: scale(1.04); }
+.logoLink img { filter: drop-shadow(0 4px 14px rgba(0,174,239,.28)); }
+
+.formTitle {
+  font-family: var(--font-serif);
+  font-size: 2.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.formSub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ─── Form ───────────────────────────────────────────────── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.01em;
+}
+
+/* ─── Inputs — clean, modern ────────────────────────────── */
+.input {
+  padding: 13px 18px;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: #F9FAFB;
+  transition: border-color 0.22s cubic-bezier(0.4,0,0.2,1),
+              box-shadow  0.22s cubic-bezier(0.4,0,0.2,1),
+              background  0.22s;
+  outline: none;
+  width: 100%;
+  /* Fix browser autofill olive-green background */
+  -webkit-text-fill-color: var(--text-primary);
+}
+
+/* Kill the browser autofill yellow/olive tint */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 60px #F9FAFB inset !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+  caret-color: var(--text-primary);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.input:hover:not(:focus) {
+  border-color: #D1D5DB;
+  background: #f4f6fb;
+}
+
+.input:focus {
+  border-color: var(--navy);
+  background: var(--white);
+  box-shadow:
+    0 0 0 3.5px rgba(13,27,62,.10),
+    0 2px 8px rgba(13,27,62,.06);
+}
+
+.input::placeholder {
+  color: #9CA3AF;
+  font-weight: 400;
+}
+
+/* ─── Forgot link — sophisticated primary blue ───────────── */
+.forgotLink {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--navy-light);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 1px;
+  letter-spacing: 0.01em;
+  transition: color 0.18s;
+}
+.forgotLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--navy-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+.forgotLink:hover { color: var(--navy); }
+.forgotLink:hover::after { transform: scaleX(1); }
+
+/* ─── Error box ──────────────────────────────────────────── */
+.errorBox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 0.83rem;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 10px;
+  animation: fadeSlideIn 0.28s ease;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Submit Button — polished, animated arrow ───────────── */
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 28px;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition:
+    background  0.24s ease,
+    box-shadow  0.24s ease,
+    transform   0.18s ease;
+  text-decoration: none;
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer on hover */
+.submitBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.08) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.submitBtn:hover:not(:disabled)::before {
+  transform: translateX(100%);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--navy-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(13,27,62,.22), 0 2px 8px rgba(13,27,62,.12);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(13,27,62,.12);
+}
+
+/* Arrow animates right on hover */
+.submitBtn svg {
+  transition: transform 0.22s ease;
+  flex-shrink: 0;
+}
+.submitBtn:hover:not(:disabled) svg {
+  transform: translateX(3px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ─── Spinner ────────────────────────────────────────────── */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,.35);
+  border-top-color: var(--white);
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── "Don't have an account?" row ─────────────────────── */
+.switchText {
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  margin-top: 28px;
+  line-height: 1.6;
+}
+
+/* ─── Switch / "Create one" link — sophisticated ────────── */
+.switchLink {
+  font-weight: 600;
+  color: var(--navy-light);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 1px;
+  transition: color 0.18s;
+}
+.switchLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--navy-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+.switchLink:hover { color: var(--navy); }
+.switchLink:hover::after { transform: scaleX(1); }
+
+/* ─── Divider ────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--grey-200);
+}
+
+/* ─── Success box ────────────────────────────────────────── */
+.successBox {
+  text-align: center;
+  padding: 48px 0 32px;
+}
+.successIcon {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--navy));
+  color: var(--white);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  box-shadow: 0 8px 32px rgba(0,174,239,.3);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile first stack
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .authPage {
+    flex-direction: column;
+  }
+  .leftPanel {
+    flex: 0 0 auto;
+    min-height: 220px;
+  }
+  .leftInner {
+    padding: 28px 28px 32px;
+  }
+  .leftBrand {
+    top: 28px;
+    right: 28px;
+  }
+  .heroQuote {
+    padding: 24px 28px;
+  }
+  .heroQuote p {
+    font-size: 1.05rem;
+  }
+  .quoteIcon {
+    font-size: 3.2rem;
+    margin-bottom: 14px;
+  }
+  .rightPanel {
+    padding: 48px 24px 56px;
+  }
+  .formTitle {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formWrap { max-width: 100%; }
+  .rightPanel { padding: 40px 20px 52px; }
+}
